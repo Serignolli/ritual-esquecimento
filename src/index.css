@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: #000;
+  overflow-x: hidden;
+}
+
+.ritual-card {
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  animation: cardAppear 1s ease-out;
+}
+
+.ritual-card.releasing {
+  animation: cardBurn 3s ease-in-out forwards;
+}
+
+.runic-border {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(236, 72, 153, 0.1));
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #9333ea, #ec4899, #7c3aed) 1;
+  border-radius: 16px;
+  padding: 3px;
+  position: relative;
+  box-shadow: 
+    0 0 30px rgba(147, 51, 234, 0.3),
+    inset 0 0 30px rgba(147, 51, 234, 0.1);
+}
+
+.runic-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #9333ea, #ec4899, #7c3aed, #9333ea);
+  border-radius: 16px;
+  z-index: -1;
+  animation: borderGlow 3s ease-in-out infinite alternate;
+}
+
+.runic-border::after {
+  content: '⟨ ◇ ⟩';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #a855f7;
+  padding: 0 16px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-content {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 14px;
+  padding: 48px 32px;
+  backdrop-filter: blur(10px);
+}
+
+.memory-input {
+  width: 100%;
+  background: rgba(147, 51, 234, 0.1);
+  border: 1px solid rgba(147, 51, 234, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  color: #d8b4fe;
+  font-size: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.3s ease;
+}
+
+.memory-input:focus {
+  outline: none;
+  border-color: #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  background: rgba(147, 51, 234, 0.15);
+}
+
+.memory-input::placeholder {
+  color: rgba(216, 180, 254, 0.6);
+  font-style: italic;
+}
+
+.submit-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
+  background: linear-gradient(135deg, #8b5cf6, #f472b6);
+}
+
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.burning-animation {
+  animation: burn 2s ease-in-out;
+}
+
+/* Animations */
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardBurn {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+    filter: brightness(1.2) hue-rotate(30deg);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+    filter: brightness(0.8) blur(2px);
+  }
+}
+
+@keyframes borderGlow {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes burn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-content {
+    padding: 32px 24px;
+  }
+  
+  .ritual-card {
+    margin: 0 16px;
+  }
+  
+  .memory-input {
+    font-size: 16px;
+    min-height: 100px;
+  }
+  
+  h1 {
+    font-size: 3rem !important;
+  }
+  
+  h2 {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-content {
+    padding: 24px 16px;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-col > * {
+    width: 100%;
+    text-align: center;
+  }
+}
