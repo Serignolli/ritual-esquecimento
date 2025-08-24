@@ -209,7 +209,7 @@ function App() {
                 {t.anotherRitual}
               </button>
               <a
-                href="https://buymeacoffee.com"
+                href="https://buymeacoffee.com/gabrielserignolli"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 
