@@ -2,246 +2,279 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap');
-
-* {
-  box-sizing: border-box;
+:root {
+  --void: #07050c;
+  --violet: #c4b5fd;
+  --violet-dim: rgba(167, 139, 250, 0.35);
+  --ember: #fb923c;
 }
 
 body {
-  font-family: 'Cormorant Garamond', serif;
-  background: #000;
-  overflow-x: hidden;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(76, 29, 149, 0.28), transparent 60%),
+    radial-gradient(ellipse at 50% 110%, rgba(154, 52, 18, 0.18), transparent 55%),
+    var(--void);
+  background-attachment: fixed;
+  color: #ede9fe;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+::selection {
+  background: rgba(167, 139, 250, 0.35);
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ddd6fe;
+  text-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
+}
+
+/* Sky */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  border-radius: 9999px;
+  background: #e9d5ff;
+  opacity: 0.15;
+  animation: twinkle ease-in-out infinite;
+}
+
+/* Sigil */
+
+.sigil {
+  color: var(--violet);
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
+  animation: turn 60s linear infinite;
+}
+
+.sigil--spent {
+  color: var(--ember);
+  opacity: 0.55;
+  filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.5));
+  animation-duration: 90s;
+}
+
+/* Controls */
+
+.lang-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 20;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: rgba(196, 181, 253, 0.4);
+  transition: color 0.3s;
+}
+
+.lang-toggle .is-active {
+  color: var(--violet);
+}
+
+.lang-toggle:hover {
+  color: rgba(196, 181, 253, 0.65);
+}
+
+.rite-button {
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--violet-dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ddd6fe;
+  background: rgba(76, 29, 149, 0.15);
+  transition: border-color 0.4s, background-color 0.4s, box-shadow 0.4s, color 0.4s;
+}
+
+.rite-button:hover:not(:disabled) {
+  border-color: rgba(196, 181, 253, 0.8);
+  background: rgba(76, 29, 149, 0.35);
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.35);
+}
+
+.rite-button--ember:hover:not(:disabled) {
+  color: #ffedd5;
+  border-color: rgba(251, 146, 60, 0.8);
+  background: rgba(154, 52, 18, 0.3);
+  box-shadow: 0 0 28px rgba(251, 146, 60, 0.35);
+}
+
+.rite-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.rite-button:focus-visible,
+.lang-toggle:focus-visible,
+.coffee-link:focus-visible {
+  outline: 1px solid var(--violet);
+  outline-offset: 4px;
+}
+
+.coffee-link {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(253, 186, 116, 0.7);
+  border-bottom: 1px solid rgba(253, 186, 116, 0.25);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.coffee-link:hover {
+  color: #fdba74;
+  border-color: rgba(253, 186, 116, 0.7);
+}
+
+/* Offering card: thin double frame with a small ornament */
 
 .ritual-card {
-  max-width: 600px;
+  position: relative;
   width: 100%;
-  position: relative;
-  animation: cardAppear 1s ease-out;
+  max-width: 36rem;
+  padding: 3rem 2rem 2.5rem;
+  border: 1px solid var(--violet-dim);
+  background: rgba(7, 5, 12, 0.85);
+  box-shadow:
+    0 0 0 5px var(--void),
+    0 0 0 6px rgba(167, 139, 250, 0.15),
+    0 0 60px rgba(76, 29, 149, 0.35);
 }
 
-.ritual-card.releasing {
-  animation: cardBurn 3s ease-in-out forwards;
-}
-
-.runic-border {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(236, 72, 153, 0.1));
-  border: 2px solid;
-  border-image: linear-gradient(45deg, #9333ea, #ec4899, #7c3aed) 1;
-  border-radius: 16px;
-  padding: 3px;
-  position: relative;
-  box-shadow: 
-    0 0 30px rgba(147, 51, 234, 0.3),
-    inset 0 0 30px rgba(147, 51, 234, 0.1);
-}
-
-.runic-border::before {
-  content: '';
+.ritual-card::before {
+  content: '✦';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #9333ea, #ec4899, #7c3aed, #9333ea);
-  border-radius: 16px;
-  z-index: -1;
-  animation: borderGlow 3s ease-in-out infinite alternate;
-}
-
-.runic-border::after {
-  content: '⟨ ◇ ⟩';
-  position: absolute;
-  top: -15px;
+  top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #000;
-  color: #a855f7;
-  padding: 0 16px;
-  font-size: 20px;
-  font-weight: bold;
+  color: var(--violet);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  line-height: 1;
 }
 
-.card-content {
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 14px;
-  padding: 48px 32px;
-  backdrop-filter: blur(10px);
+@media (max-width: 480px) {
+  .ritual-card {
+    padding: 2.5rem 1.25rem 2rem;
+  }
 }
 
 .memory-input {
+  display: block;
   width: 100%;
-  background: rgba(147, 51, 234, 0.1);
-  border: 1px solid rgba(147, 51, 234, 0.3);
-  border-radius: 8px;
-  padding: 16px;
-  color: #d8b4fe;
-  font-size: 16px;
-  font-family: 'Cormorant Garamond', serif;
+  min-height: 8rem;
+  padding: 1rem;
   resize: vertical;
-  min-height: 120px;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  background: rgba(76, 29, 149, 0.08);
+  color: #ede9fe;
+  font: inherit;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.memory-input::placeholder {
+  color: rgba(196, 181, 253, 0.4);
+  font-style: italic;
 }
 
 .memory-input:focus {
   outline: none;
-  border-color: #a855f7;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-  background: rgba(147, 51, 234, 0.15);
+  border-color: rgba(167, 139, 250, 0.6);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.2);
 }
 
-.memory-input::placeholder {
-  color: rgba(216, 180, 254, 0.6);
-  font-style: italic;
+/* The written memory, word by word, turns to ember and rises away */
+
+.burning-text {
+  min-height: 8rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
-.submit-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #7c3aed, #ec4899);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-}
-
-.submit-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
-  background: linear-gradient(135deg, #8b5cf6, #f472b6);
-}
-
-.submit-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.burning-animation {
-  animation: burn 2s ease-in-out;
+.burning-text span {
+  display: inline-block;
+  white-space: pre-wrap;
+  animation: ember 1.6s ease-in forwards;
 }
 
 /* Animations */
-@keyframes cardAppear {
-  0% {
-    opacity: 0;
-    transform: translateY(50px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
 
-@keyframes cardBurn {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.05);
-    filter: brightness(1.2) hue-rotate(30deg);
-  }
-  100% {
-    opacity: 0.3;
-    transform: scale(0.95);
-    filter: brightness(0.8) blur(2px);
-  }
-}
-
-@keyframes borderGlow {
-  0% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes burn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
+.fade-in {
+  animation: fade-in 1s ease-out both;
 }
 
 @keyframes fade-in {
-  0% {
+  from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(16px);
+  }
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ember {
+  0% {
+    color: #ede9fe;
+  }
+  35% {
+    color: var(--ember);
+    text-shadow: 0 0 12px rgba(251, 146, 60, 0.9);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    color: #7c2d12;
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-1.5rem);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
-}
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .sigil {
+    animation: none;
+  }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .card-content {
-    padding: 32px 24px;
+  .fade-in {
+    animation-duration: 0.01s;
   }
-  
-  .ritual-card {
-    margin: 0 16px;
-  }
-  
-  .memory-input {
-    font-size: 16px;
-    min-height: 100px;
-  }
-  
-  h1 {
-    font-size: 3rem !important;
-  }
-  
-  h2 {
-    font-size: 2.5rem !important;
+
+  .burning-text span {
+    animation-name: fade-out;
   }
 }
 
-@media (max-width: 480px) {
-  .card-content {
-    padding: 24px 16px;
-  }
-  
-  h1 {
-    font-size: 2.5rem !important;
-  }
-  
-  h2 {
-    font-size: 2rem !important;
-  }
-  
-  .submit-button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  .flex-col {
-    flex-direction: column;
-  }
-  
-  .flex-col > * {
-    width: 100%;
-    text-align: center;
+@keyframes fade-out {
+  to {
+    opacity: 0;
   }
 }

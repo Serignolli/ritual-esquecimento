@@ -22,7 +22,7 @@ O usuário escreve uma memória ou pensamento que deseja liberar, acompanha uma 
   - Oferta da memória (campo de texto)
   - Animação de “queima” da memória
   - Mensagem de conclusão libertadora  
-- ✨ **Elementos visuais místicos** (estrelas, lua, chamas).  
+- ✨ **Elementos visuais místicos**: céu estrelado, selo ritual e a memória queimando palavra por palavra.  
 - 🎨 **Design responsivo e estilizado** com Tailwind CSS.  
 - ☕ Integração com **Buy Me a Coffee** para apoiar o criador.  
 
@@ -33,7 +33,6 @@ O usuário escreve uma memória ou pensamento que deseja liberar, acompanha uma 
 - [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)  
 - [Vite](https://vitejs.dev/)  
 - [Tailwind CSS](https://tailwindcss.com/)  
-- [Lucide Icons](https://lucide.dev/)  
 
 ---
 
@@ -51,9 +50,9 @@ npm install
 
 # Inicie o servidor de desenvolvimento
 npm run dev
+```
 
 Projeto disponível em `http://localhost:5173` (porta padrão do Vite).
-```
 ---
 
 ## 🌌 Estrutura do Ritual
