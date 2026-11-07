@@ -4,7 +4,7 @@ type Language = 'en' | 'pt';
 type Stage = 'begin' | 'offering' | 'releasing' | 'complete';
 
 const RELEASE_MS = 3600;
-const COFFEE_URL = 'https://buymeacoffee.com/gabrielserignolli';
+const COFFEE_URL = 'https://apoie.serignolli.com/';
 
 const translations = {
   en: {

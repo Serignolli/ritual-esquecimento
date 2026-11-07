@@ -4,7 +4,7 @@ Uma aplicação web interativa que simula um **ritual digital de esquecimento**.
 O usuário escreve uma memória ou pensamento que deseja liberar, acompanha uma animação simbólica de queima, e recebe uma mensagem de conclusão, representando a libertação desse fardo.
 
 ✨ Disponível em **Inglês (EN)** e **Português (PT)**.  
-☕ Suporte via [Buy Me a Coffee](https://buymeacoffee.com/gabrielserignolli).
+☕ Apoie em [apoie.serignolli.com](https://apoie.serignolli.com/).
 
 ---
 
@@ -24,7 +24,7 @@ O usuário escreve uma memória ou pensamento que deseja liberar, acompanha uma 
   - Mensagem de conclusão libertadora  
 - ✨ **Elementos visuais místicos**: céu estrelado, selo ritual e a memória queimando palavra por palavra.  
 - 🎨 **Design responsivo e estilizado** com Tailwind CSS.  
-- ☕ Integração com **Buy Me a Coffee** para apoiar o criador.  
+- ☕ Link para a página de apoio (**apoie.serignolli.com**).  
 
 ---
 
@@ -75,4 +75,4 @@ Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 ## 🙏 Apoio
 
 Se este ritual digital ajudou você, considere apoiar:  
-☕ [Buy Me a Coffee](https://buymeacoffee.com/gabrielserignolli)
+☕ [Apoie o projeto](https://apoie.serignolli.com/)
