@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ritual-esquecimento.vercel.app/sitemap.xml
+Sitemap: https://ritual.serignolli.com/sitemap.xml
